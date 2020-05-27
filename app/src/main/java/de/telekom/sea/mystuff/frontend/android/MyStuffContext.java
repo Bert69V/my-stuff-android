@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.widget.Toast;
 import de.telekom.sea.mystuff.frontend.android.api.ApiFactory;
 
+import de.telekom.sea.mystuff.frontend.android.repo.ItemRepo;
 import lombok.Getter;
 import timber.log.Timber;
 
@@ -20,15 +21,18 @@ public class MyStuffContext {
 
     private MyStuffApplication app;
 
+    @Getter
+    private ItemRepo repo;
+
 
 
     void initWithApplication(MyStuffApplication app){
         this.app = app;
 
         this.apiFactory = new ApiFactory(
-                BuildConfig.APIFACTORY_HOSTNAME,
-                BuildConfig.APIFACTORY_PROTOCOL,
-                BuildConfig.APIFACTORY_PORT
+                BuildConfig.apifactory_hostname,
+                BuildConfig.apifactory_protocol,
+                BuildConfig.apifactory_port
         );
 
     }
