@@ -1,5 +1,6 @@
 package de.telekom.sea.mystuff.frontend.android.api;
 
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -33,6 +34,7 @@ public class ApiResponse<T> {
                 try {
                     message = response.errorBody().string();
                 } catch (IOException ignored) {
+                    Log.e("ApiResponse", "error while parsing", ignored);
                     Timber.e(ignored, "error while parsing response");
                 }
             }

@@ -1,5 +1,6 @@
 package de.telekom.sea.mystuff.frontend.android.ui;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -18,7 +19,7 @@ import lombok.Getter;
 public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter <ItemListRecyclerViewAdapter.ViewHolder> {
 
     @Getter
-    private final List<Item> liste;
+    private List<Item> liste;
 
     public ItemListRecyclerViewAdapter(List<Item> liste) {
         this.liste = liste;
@@ -36,7 +37,8 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter <ItemListR
     public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         MyStuffItemBinding listItemBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.activity_main, parent, false);
+                R.layout.my_stuff_item, parent, false);
+        Log.d("ItemListRecyclerViewAdapter", "listItemBinding:" + listItemBinding);
         return new ViewHolder(listItemBinding);
     }
 
@@ -46,7 +48,7 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter <ItemListR
         holder.binding.setItem(item);
     }
 
-     @Override
+    @Override
     public int getItemCount() {
         return liste.size();
     }

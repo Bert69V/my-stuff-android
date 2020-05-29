@@ -17,14 +17,14 @@ public class ItemRepo {
     }
 
     public LiveData<ApiResponse<List<Item>>> getAll() {
-        return itemApi.getAll();
+        return this.itemApi.getAll();
     }
 
     public LiveData<ApiResponse<Item>> getById(Long id) {
         return itemApi.getById(id);
     }
 
-    public LiveData<ApiResponse<Item>> updateUserProfile(Item item) {
+    public LiveData<ApiResponse<Item>> updateItem(Item item) {
         return itemApi.updateItem(item);
     }
 

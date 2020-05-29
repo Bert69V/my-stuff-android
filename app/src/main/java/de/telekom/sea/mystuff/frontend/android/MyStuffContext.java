@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.widget.Toast;
 import de.telekom.sea.mystuff.frontend.android.api.ApiFactory;
 
+import de.telekom.sea.mystuff.frontend.android.api.ItemApi;
 import de.telekom.sea.mystuff.frontend.android.repo.ItemRepo;
 import lombok.Getter;
 import timber.log.Timber;
@@ -30,11 +31,11 @@ public class MyStuffContext {
         this.app = app;
 
         this.apiFactory = new ApiFactory(
-                BuildConfig.apifactory_hostname,
-                BuildConfig.apifactory_protocol,
-                BuildConfig.apifactory_port
+                "10.0.2.2",
+                "http",
+                8080
         );
-
+        this.repo = new ItemRepo(this.apiFactory.createApi(ItemApi.class));
     }
 
 

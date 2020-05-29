@@ -12,14 +12,13 @@ import retrofit2.http.Path;
 
 public interface ItemApi {
 
+    @GET("/api/v1/items")
+    public LiveData<ApiResponse<List<Item>>>getAll();
 
-    @GET("/api/v1/profiles")
-    LiveData<ApiResponse<List<Item>>> getAll();
+    @GET("/api/v1/items/{id}")
+    public LiveData<ApiResponse<Item>> getById(@Path("id") Long id);
 
-    @GET("/api/v1/profiles/{id}")
-    LiveData<ApiResponse<Item>> getById(@Path("id") Long id);
-
-   @POST("/api/v1/profiles")
-    LiveData<ApiResponse<Item>> updateItem(@Body Item newItem);
+    @POST("/api/v1/items")
+    public LiveData<ApiResponse<Item>> updateItem(@Body Item newItem);
 
 }
