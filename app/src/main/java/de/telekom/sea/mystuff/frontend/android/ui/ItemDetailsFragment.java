@@ -1,10 +1,8 @@
 package de.telekom.sea.mystuff.frontend.android.ui;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -28,8 +26,9 @@ public class ItemDetailsFragment extends Fragment {
 
     @Getter
     private ItemDetailsFragmentBinding binding;
-
+    @Getter
     private ItemListViewModel viewModel;
+
 
     public static ItemDetailsFragment newInstance() {
         return new ItemDetailsFragment();
@@ -51,13 +50,14 @@ public class ItemDetailsFragment extends Fragment {
         viewModel.initWithApplication(getActivity().getApplication());
 
         long itemId = getArguments().getLong("itemId");
-        Toast.makeText(getContext(), "ItemId:" + itemId, Toast.LENGTH_LONG);
+        Toast.makeText(getActivity(), "ItemId:" + itemId, Toast.LENGTH_LONG);
+
         LiveData<ApiResponse<Item>> itemApi = viewModel.getItemById(itemId);
         itemApi.observe(this.getViewLifecycleOwner(), apiResponse -> {
             if(apiResponse.isSuccessful()){
               binding.setItem(apiResponse.body);
             }else{
-              Toast.makeText(getContext(),"Could not item", Toast.LENGTH_LONG);
+              Toast.makeText(getActivity(),"Could not item", Toast.LENGTH_LONG);
             }
         });
 
